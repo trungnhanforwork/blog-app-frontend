@@ -10,7 +10,7 @@ const Navbar = () => {
             <button
               type="button"
               id="mobile-dropdown-button"
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="relative inline-flex items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -51,19 +51,19 @@ const Navbar = () => {
               <div className="flex space-x-2">
                 <a
                   href="/index.html"
-                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
                 >
                   Home
                 </a>
                 <a
                   href="/properties.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
                 >
                   Blogs
                 </a>
                 <a
                   href="/add-property.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className="text-white hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
                 >
                   Add Blog
                 </a>
@@ -123,7 +123,7 @@ const Navbar = () => {
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="h-8 w-8 rounded-full"
-                    src="images/profile.png"
+                    src="./src/assets/images/profile.png"
                     alt=""
                   />
                 </button>
