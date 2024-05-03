@@ -1,6 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? "bg-black text-white hover:bg-gray-900 hover:text-white rounded-3xl px-5 py-2"
+      : "text-white hover:bg-gray-900 hover:text-white rounded-3xl px-5 py-2";
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -35,7 +40,7 @@ const Navbar = () => {
 
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
-            <a className="flex flex-shrink-0 items-center" href="/index.html">
+            <NavLink className="flex flex-shrink-0 items-center" to="/">
               <img
                 className="h-10 w-auto"
                 src="./src/assets/images/logo.png"
@@ -45,28 +50,19 @@ const Navbar = () => {
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 BLOG
               </span>
-            </a>
+            </NavLink>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
             <div className="hidden md:ml-6 md:block">
               <div className="flex space-x-2">
-                <a
-                  href="/index.html"
-                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
-                >
+                <NavLink to="/" className={linkClass}>
                   Home
-                </a>
-                <a
-                  href="/properties.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
-                >
+                </NavLink>
+                <NavLink to="/posts" className={linkClass}>
                   Blogs
-                </a>
-                <a
-                  href="/add-property.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-full px-3 py-2"
-                >
+                </NavLink>
+                <NavLink to="/new" className={linkClass}>
                   Add Blog
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -82,7 +78,7 @@ const Navbar = () => {
 
           {/* <!-- Right Side Menu (Logged In) --> */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
-            <a href="messages.html" className="relative group">
+            <a href="/" className="relative group">
               <button
                 type="button"
                 className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -139,7 +135,7 @@ const Navbar = () => {
                 tabIndex="-1"
               >
                 <a
-                  href="/profile.html"
+                  href="/"
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex="-1"
@@ -148,7 +144,7 @@ const Navbar = () => {
                   Your Profile
                 </a>
                 <a
-                  href="saved-properties.html"
+                  href="/"
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex="-1"
@@ -157,7 +153,7 @@ const Navbar = () => {
                   Saved Properties
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   className="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabIndex="-1"
@@ -193,7 +189,6 @@ const Navbar = () => {
             Add Property
           </a>
           <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4">
-            <i className="fa-brands fa-google mr-2"></i>
             <span>Login or Register</span>
           </button>
         </div>
