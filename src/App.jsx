@@ -10,6 +10,7 @@ import MainLayout from "./layouts/MainLayout";
 import PostPage from "./pages/PostPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PostAddPage from "./pages/PostAddPage";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path="/posts" element={<PostPage />} />
       <Route path="/new" element={<PostAddPage />} />
       <Route path="*" element={<NotFoundPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Route>
   )
 );
