@@ -9,6 +9,33 @@ const Navbar = ({ isAuthenticated }) => {
       ? "bg-black text-white hover:bg-gray-900 hover:text-white rounded-3xl px-5 py-2"
       : "text-white hover:bg-gray-900 hover:text-white rounded-3xl px-5 py-2";
 
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/account/logout/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        localStorage.removeItem("token");
+        window.location.href = "http://localhost:3500/";
+      } else {
+        throw new Error("Logout failed");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -168,9 +195,7 @@ const Navbar = ({ isAuthenticated }) => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      onClick={() => {
-                        setProfileMenuOpen(false);
-                      }}
+                      onClick={handleLogout}
                     >
                       Sign Out
                     </button>

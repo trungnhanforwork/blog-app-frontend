@@ -8,6 +8,7 @@ const PostPage = () => {
   useEffect(() => {
     // Fetching data from posts.json (Assuming it's in the public folder)
     fetch("./src/post.json")
+    // fetch("http://127.0.0.1:8000/api/blog/list/")
       .then((response) => response.json())
       .then((data) => setPosts(data.posts))
       .catch((error) => console.error("Error fetching posts:", error));
