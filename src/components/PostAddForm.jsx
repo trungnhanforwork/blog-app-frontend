@@ -7,9 +7,10 @@ const PostAddForm = () => {
   }, []);
 
   const [fields, setFields] = useState({
+    comments: [],
     title: "",
     content: "",
-    category: "",
+    category: null,
   });
 
   const [categories, setCategories] = useState([]);
@@ -45,7 +46,7 @@ const PostAddForm = () => {
       if (!token) {
         throw new Error("Token not found");
       }
-      console.log(token);
+      // console.log(token);
       const response = await fetch("http://127.0.0.1:8000/api/blog/new/", {
         method: "POST",
         headers: {
