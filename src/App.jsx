@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
-import PostPage from "./pages/PostPage";
+import PostPage from "./pages/PostListPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import PostAddPage from "./pages/PostAddPage";
 import LoginPage from "./pages/LoginPage";

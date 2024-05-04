@@ -7,12 +7,22 @@ const PostPage = () => {
 
   useEffect(() => {
     // Fetching data from posts.json (Assuming it's in the public folder)
-    fetch("./src/post.json")
-    // fetch("http://127.0.0.1:8000/api/blog/list/")
+    // fetch("./src/post.json")
+    fetch("http://127.0.0.1:8000/api/blog/list/")
       .then((response) => response.json())
-      .then((data) => setPosts(data.posts))
+      .then((data) => {
+        const formattedPosts = data.map((post) => ({
+          id: post.id.toString(),
+          title: post.title,
+          category: post.category_name,
+          content: post.content,
+          user: post.user,
+        }));
+        setPosts({ posts: formattedPosts });
+      })
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
+
   return (
     <>
       <section className="px-4 py-6">
@@ -21,10 +31,10 @@ const PostPage = () => {
             Browse Posts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {posts === 0 ? (
+            {posts.length === 0 ? (
               <p>No post found!</p>
             ) : (
-              posts.map((post) => <PostCard key={post.id} post={post} />)
+              posts.posts.map((post) => <PostCard key={post.id} post={post} />)
             )}
           </div>
         </div>
