@@ -19,6 +19,16 @@ const PostDetailView = ({ post }) => {
             {post.user}
           </div>
         </div>
+
+        {/* Comment Section */}
+        <div className="mb-5">
+          <h4 className="text-lg font-bold mb-3">Comments:</h4>
+          {post.comments.map((comment, index) => (
+            <div key={index} className="border border-gray-200 p-3 mb-3 rounded-md">
+              <p>{comment}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

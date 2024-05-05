@@ -1,4 +1,5 @@
 import { FaUserSecret } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
   const description = post.content.substring(0, 120) + "...";
@@ -20,12 +21,12 @@ const PostCard = ({ post }) => {
             <FaUserSecret className="inline text-lg mb-1 mr-1" />
             {post.user}
           </div>
-          <a
-            href={`/post/${post.id}`}
+          <Link
+            to={`/post/${post.id}`}
             className="h-[36px] bg-blue-800 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
