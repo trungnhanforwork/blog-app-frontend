@@ -13,6 +13,8 @@ import PostAddPage from "./pages/PostAddPage";
 import PostPage from "./pages/PostListPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ProfileDetailPage from "./pages/ProfileDetailPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +22,8 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/profile" element={<ProfileDetailPage />} />
+      <Route path="/profile/changepassword" element={<ChangePasswordPage />} />
       <Route path="/new" element={<PostAddPage />} />
       <Route path="/post/:id" element={<PostDetailPage />} />
       <Route path="/posts" element={<PostPage />} />
