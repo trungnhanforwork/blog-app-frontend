@@ -16,7 +16,7 @@ const Navbar = ({ isAuthenticated }) => {
         throw new Error("Token not found");
       }
       const response = await fetch(
-        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/account/logout/`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/account/logout/`,
         {
           method: "POST",
           headers: {

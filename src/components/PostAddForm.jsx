@@ -53,7 +53,7 @@ const PostAddForm = () => {
       }
       // console.log(token);
       const response = await fetch(
-        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/new/`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/new/`,
         {
           method: "POST",
           headers: {

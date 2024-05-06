@@ -12,7 +12,7 @@ const SignUpForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/account/register/`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/account/register/`,
         {
           method: "POST",
           headers: {

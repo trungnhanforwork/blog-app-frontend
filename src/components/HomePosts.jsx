@@ -6,7 +6,7 @@ const HomePosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/list/`)
+    fetch(`${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/list/`)
       .then((response) => response.json())
       .then((data) => setPosts(data))
       .catch((error) => console.error("Error fetching posts:", error));

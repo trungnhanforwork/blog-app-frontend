@@ -8,7 +8,7 @@ const PostPage = () => {
   useEffect(() => {
     // Fetching data from posts.json (Assuming it's in the public folder)
     // fetch("./src/post.json")
-    fetch(`${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/list/`)
+    fetch(`${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/list/`)
       .then((response) => response.json())
       .then((data) => {
         const formattedPosts = data.map((post) => ({

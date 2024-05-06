@@ -9,7 +9,7 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     // Fetch post data from API with id
-    fetch(`${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/${id}`)
+    fetch(`${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch post data");

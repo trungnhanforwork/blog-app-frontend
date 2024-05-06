@@ -10,7 +10,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/account/login/`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/account/login/`,
         {
           method: "POST",
           headers: {
