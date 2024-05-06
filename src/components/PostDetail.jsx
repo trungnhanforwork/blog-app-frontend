@@ -1,6 +1,8 @@
 import { FaUserSecret } from "react-icons/fa";
+import CommentAddBox from "./CommentAddBox";
+import Comment from "./Comment";
 
-const PostDetailView = ({ post }) => {
+const PostDetailView = ({ post, comments }) => {
   return (
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
@@ -21,14 +23,10 @@ const PostDetailView = ({ post }) => {
         </div>
 
         {/* Comment Section */}
-        <div className="mb-5">
-          <h4 className="text-lg font-bold mb-3">Comments:</h4>
-          {post.comments.map((comment, index) => (
-            <div key={index} className="border border-gray-200 p-3 mb-3 rounded-md">
-              <p>{comment}</p>
-            </div>
-          ))}
-        </div>
+        <CommentAddBox postId={post.id} />
+        {comments.map((comment, index) => (
+          <Comment key={index} comment={comment} />
+        ))}
       </div>
     </div>
   );

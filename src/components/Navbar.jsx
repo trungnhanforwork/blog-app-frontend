@@ -11,27 +11,34 @@ const Navbar = ({ isAuthenticated }) => {
 
   const handleLogout = async () => {
     try {
+      // Retrieve token from local storage
       const token = localStorage.getItem("token");
       if (!token) {
+        // If token is not found, throw an error
         throw new Error("Token not found");
       }
+      // Send a POST request to the logout endpoint
       const response = await fetch(
         `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/account/logout/`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Token ${token}`,
+            Authorization: `Token ${token}`, // Include token in the Authorization header
           },
         }
       );
       if (response.ok) {
+        // If logout is successful, remove token from local storage
         localStorage.removeItem("token");
+        // Redirect user to the homepage
         window.location.href = "http://localhost:3500/";
       } else {
+        // If logout fails, throw an error
         throw new Error("Logout failed");
       }
     } catch (error) {
+      // Catch and log any errors that occur during the logout process
       console.error(error);
     }
   };
@@ -72,11 +79,7 @@ const Navbar = ({ isAuthenticated }) => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <NavLink className="flex flex-shrink-0 items-center" to="/">
-              <img
-                className="h-10 w-auto"
-                src="./src/assets/images/logo.png"
-                alt="BlogApp"
-              />
+              <img className="h-10 w-auto" src="/logo.png" alt="BlogApp" />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 BLOG
@@ -148,7 +151,7 @@ const Navbar = ({ isAuthenticated }) => {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full"
-                      src="./src/assets/images/profile.png"
+                      src="/profile.png"
                       alt=""
                       width={40}
                       height={40}
