@@ -6,7 +6,7 @@ const HomePosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/blog/list/")
+    fetch(`${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/list/`)
       .then((response) => response.json())
       .then((data) => setPosts(data))
       .catch((error) => console.error("Error fetching posts:", error));

@@ -9,18 +9,18 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     // Fetch post data from API with id
-    fetch(`http://localhost:8000/api/blog/${id}`)
-      .then(response => {
+    fetch(`${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/${id}`)
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to fetch post data');
+          throw new Error("Failed to fetch post data");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         setPost(data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
         setLoading(false);
       });

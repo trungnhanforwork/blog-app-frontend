@@ -52,14 +52,17 @@ const PostAddForm = () => {
         throw new Error("Token not found");
       }
       // console.log(token);
-      const response = await fetch("http://127.0.0.1:8000/api/blog/new/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-        },
-        body: JSON.stringify(fields),
-      });
+      const response = await fetch(
+        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/blog/new/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify(fields),
+        }
+      );
       if (response.ok) {
         // Thực hiện các hành động khi đăng bài thành công
         console.log("Post added successfully!");

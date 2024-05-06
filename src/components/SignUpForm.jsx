@@ -11,13 +11,21 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/account/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, email, password, retype_password: retypePassword }),
-      });
+      const response = await fetch(
+        `${process.env.DJANGO_PUBLIC_API_DOMAIN}/account/register/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+            retype_password: retypePassword,
+          }),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         // Assuming successful registration, redirect user to the login page
