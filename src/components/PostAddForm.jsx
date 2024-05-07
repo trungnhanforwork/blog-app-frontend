@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -98,7 +100,7 @@ const PostAddForm = () => {
           <div className="mb-4">
             <label
               htmlFor="title"
-              className="block text-gray-700 font-bold mb-2"
+              className="text-xl block text-gray-700 font-bold mb-2"
             >
               Post Title
             </label>
@@ -106,7 +108,7 @@ const PostAddForm = () => {
               type="text"
               id="title"
               name="title"
-              className="border rounded w-full py-2 px-3 mb-2"
+              className="border rounded w-full py-2 px-3 mb-2 text-lg"
               placeholder="Enter post title"
               required
               value={fields.title}
@@ -117,25 +119,48 @@ const PostAddForm = () => {
           <div className="mb-4">
             <label
               htmlFor="content"
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-bold mb-2 text-xl"
             >
               Content
             </label>
-            <textarea
+            <ReactQuill
               id="content"
               name="content"
-              className="border rounded w-full py-2 px-3"
-              rows="4"
-              placeholder="Enter post content"
               value={fields.content}
-              onChange={handleChange}
-            ></textarea>
+              onChange={(content) => setFields({ ...fields, content })}
+              className="border rounded"
+              placeholder="Enter post content"
+              modules={{
+                toolbar: [
+                  [{ header: [1, 2, 3, false] }],
+                  ["bold", "italic", "underline", "strike"],
+                  ["blockquote", "code-block"],
+                  [{ list: "ordered" }, { list: "bullet" }],
+                  [{ indent: "-1" }, { indent: "+1" }],
+                  ["clean"],
+                ],
+              }}
+              formats={[
+                "header",
+                "bold",
+                "italic",
+                "underline",
+                "strike",
+                "blockquote",
+                "code-block",
+                "list",
+                "bullet",
+                "indent",
+                "link",
+                "image",
+              ]}
+            />
           </div>
 
           <div className="mb-4">
             <label
               htmlFor="category"
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-bold mb-2 text-xl"
             >
               Category
             </label>
@@ -147,9 +172,15 @@ const PostAddForm = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Select a category</option>
+              <option className="text-lg" value="">
+                Select a category
+              </option>
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option
+                  className="text-lg"
+                  key={category.id}
+                  value={category.id}
+                >
                   {category.name}
                 </option>
               ))}

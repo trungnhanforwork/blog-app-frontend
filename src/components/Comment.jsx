@@ -8,7 +8,7 @@ const Comment = ({ comment }) => {
   };
   const updatedTime = updateTime(comment.updated_at);
   return (
-    <section className="bg-white dark:bg-gray-900 py-6 lg:py-16 antialiased">
+    <section className="bg-white dark:bg-gray-900 py-4 lg:py-4 antialiased">
       <div className="max-w-2xl mx-auto px-4">
         <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
           <footer className="flex justify-between items-center mb-2">
