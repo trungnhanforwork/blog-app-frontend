@@ -22,7 +22,7 @@ const PostAddForm = () => {
     async function fetchCategories() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/blog/category/list/"
+          `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/category/list/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
