@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { isAuthenticated, getToken } from "../utils/authUtils";
 
 const PostAddForm = () => {
   const [mounted, setMounted] = useState(false);
@@ -50,11 +51,11 @@ const PostAddForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
+      const token = getToken();
+      if (!token || !isAuthenticated()) {
+        toast.error("Fail to post blog!");
         throw new Error("Token not found");
       }
-      // console.log(token);
       const response = await fetch(
         `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/new/`,
         {
@@ -100,7 +101,7 @@ const PostAddForm = () => {
           <div className="mb-4">
             <label
               htmlFor="title"
-              className="text-xl block text-gray-700 font-bold mb-2"
+              className="text-xl block text-gray-700 font-bold mb-3"
             >
               Post Title
             </label>
@@ -119,7 +120,7 @@ const PostAddForm = () => {
           <div className="mb-4">
             <label
               htmlFor="content"
-              className="block text-gray-700 font-bold mb-2 text-xl"
+              className="block text-gray-700 font-bold mb-3 text-xl"
             >
               Content
             </label>
@@ -129,7 +130,6 @@ const PostAddForm = () => {
               value={fields.content}
               onChange={(content) => setFields({ ...fields, content })}
               className="border rounded"
-              placeholder="Enter post content"
               modules={{
                 toolbar: [
                   [{ header: [1, 2, 3, false] }],

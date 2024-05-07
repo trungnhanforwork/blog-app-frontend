@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { isAuthenticated, getToken } from "../utils/authUtils";
+import { toast } from "react-toastify";
 
 const CommentAddBox = ({ postId }) => {
   console.log(postId);
@@ -7,10 +9,12 @@ const CommentAddBox = ({ postId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("Token not found");
+      if (!isAuthenticated()) {
+        // Redirect the user to the login page or show an error message
+        toast.error("You need to login first!");
+        throw new Error("Unauthorized");
       }
+      const token = getToken();
 
       const response = await fetch(
         `${
@@ -27,6 +31,7 @@ const CommentAddBox = ({ postId }) => {
       );
 
       if (!response.ok) {
+        toast.error("Failed to post comment");
         throw new Error("Failed to post comment");
       }
 

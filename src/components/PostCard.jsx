@@ -2,7 +2,7 @@ import { FaUserSecret } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
-  const description = post.content.substring(0, 120) + "...";
+  const description = post.content.substring(0, 240) + "...";
 
   return (
     <div className="bg-white rounded-xl shadow-md relative">

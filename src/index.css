@@ -3,8 +3,5 @@
 @tailwind utilities;
 .ql-editor {
   font-size: 1.2rem;
-}
-.ql-editor::placeholder {
-  /* Remove italic formatting */
-  font-style: normal;
+  font-family: "Reddit Sans", sans-serif;
 }
