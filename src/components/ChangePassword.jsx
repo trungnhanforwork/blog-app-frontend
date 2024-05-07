@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { changePassword } from "../services/UserApi";
 
 const ChangePasswordView = () => {
@@ -9,8 +10,6 @@ const ChangePasswordView = () => {
     password: "",
     password2: "",
   });
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,17 +24,18 @@ const ChangePasswordView = () => {
     const { old_password, password, password2 } = formData;
 
     if (password !== password2) {
-      setError("New password and confirm password do not match");
+      toast.error("Retype password does not match");
       return;
     }
 
     try {
       // Call API to change password
       await changePassword({ old_password, password, password2 });
-      setSuccessMessage("Password changed successfully!");
+      toast("Change password successfully");
       logout();
     } catch (error) {
-      setError("Failed to change password. Please try again.");
+      toast.error("Failed to change password. Please try again.");
+      console.log(error);
     }
   };
 
@@ -90,16 +90,7 @@ const ChangePasswordView = () => {
             required
           />
         </div>
-        {error && (
-          <div className="bg-red-200 text-red-800 px-4 py-2 rounded-md mb-4">
-            {error}
-          </div>
-        )}
-        {successMessage && (
-          <div className="bg-green-200 text-green-800 px-4 py-2 rounded-md mb-4">
-            {successMessage}
-          </div>
-        )}
+
         <button
           className="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
           type="submit"

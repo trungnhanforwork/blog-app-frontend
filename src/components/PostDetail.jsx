@@ -16,12 +16,15 @@ const PostDetailView = ({ post, comments }) => {
         </div>
 
         {/* Render formatted text */}
-        <div className="mb-5 leading-relaxed">
+        <div
+          className="mb-5 leading-relaxed"
+          style={{ border: "none !important" }}
+        >
           <ReactQuill
             value={post.content}
             readOnly={true}
             theme="snow"
-            contentStyle={{ fontSize: "1.2rem" }}
+            contentStyle={{ fontSize: "1.2rem", border: "none !important" }}
             modules={{ toolbar: false }}
           />
         </div>
