@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PostAddForm = () => {
   const [mounted, setMounted] = useState(false);
@@ -22,7 +23,7 @@ const PostAddForm = () => {
     async function fetchCategories() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/api/blog/category/list/"
+          `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/category/list/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
@@ -64,12 +65,11 @@ const PostAddForm = () => {
         }
       );
       if (response.ok) {
-        // Thực hiện các hành động khi đăng bài thành công
-        console.log("Post added successfully!");
+        toast.success("Post added successfully!");
         setTimeout(() => setShowSuccessMessage(false), 3000);
         navigate("/");
-        // window.location.href = "/";
       } else {
+        toast.error("Failed to add post");
         throw new Error("Failed to add post");
       }
     } catch (error) {

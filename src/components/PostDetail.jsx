@@ -3,6 +3,7 @@ import CommentAddBox from "./CommentAddBox";
 import Comment from "./Comment";
 
 const PostDetailView = ({ post, comments }) => {
+  console.log(post.id);
   return (
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">

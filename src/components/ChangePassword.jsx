@@ -31,7 +31,7 @@ const ChangePasswordView = () => {
 
     try {
       // Call API to change password
-      await changePassword({old_password, password, password2});
+      await changePassword({ old_password, password, password2 });
       setSuccessMessage("Password changed successfully!");
       logout();
     } catch (error) {

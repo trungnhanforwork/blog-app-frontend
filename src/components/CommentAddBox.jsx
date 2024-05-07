@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const CommentAddBox = ({ postId }) => {
+  console.log(postId);
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
@@ -31,6 +32,9 @@ const CommentAddBox = ({ postId }) => {
 
       // Reset comment input after successful submission
       setDescription("");
+
+      // Reload the page to fetch updated comments
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +67,7 @@ const CommentAddBox = ({ postId }) => {
         <button
           type="submit"
           className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-          onChange={handleSubmit}
+          onClick={handleSubmit}
         >
           Post comment
         </button>
