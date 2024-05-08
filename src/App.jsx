@@ -15,6 +15,7 @@ import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfileDetailPage from "./pages/ProfileDetailPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import PostEditPage from "./pages/PostEditPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/new" element={<PostAddPage />} />
       <Route path="/post/:id" element={<PostDetailPage />} />
       <Route path="/posts" element={<PostPage />} />
+      <Route path="/post/edit/:id" element={<PostEditPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Route>
   )

@@ -2,7 +2,7 @@ import { FaUserSecret } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
-  const description = post.content.substring(0, 120) + "...";
+  const description = post.content.substring(0, 240) + "...";
 
   return (
     <div className="bg-white rounded-xl shadow-md relative">
@@ -12,7 +12,11 @@ const PostCard = ({ post }) => {
           <h3 className="text-xl font-bold">{post.title}</h3>
         </div>
 
-        <div className="mb-5">{description}</div>
+        {/* Render HTML content using dangerouslySetInnerHTML */}
+        <div
+          className="mb-5"
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></div>
 
         <div className="border border-gray-100 mb-5"></div>
 
@@ -32,4 +36,5 @@ const PostCard = ({ post }) => {
     </div>
   );
 };
+
 export default PostCard;

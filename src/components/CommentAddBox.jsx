@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { isAuthenticated, getToken } from "../utils/authUtils";
+import { toast } from "react-toastify";
 
 const CommentAddBox = ({ postId }) => {
   const [description, setDescription] = useState("");
@@ -6,10 +8,12 @@ const CommentAddBox = ({ postId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("Token not found");
+      if (!isAuthenticated()) {
+        // Redirect the user to the login page or show an error message
+        toast.error("You need to login first!");
+        throw new Error("Unauthorized");
       }
+      const token = getToken();
 
       const response = await fetch(
         `${
@@ -26,11 +30,15 @@ const CommentAddBox = ({ postId }) => {
       );
 
       if (!response.ok) {
+        toast.error("Failed to post comment");
         throw new Error("Failed to post comment");
       }
 
       // Reset comment input after successful submission
       setDescription("");
+
+      // Reload the page to fetch updated comments
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +71,7 @@ const CommentAddBox = ({ postId }) => {
         <button
           type="submit"
           className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-          onChange={handleSubmit}
+          onClick={handleSubmit}
         >
           Post comment
         </button>

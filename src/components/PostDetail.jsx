@@ -1,3 +1,6 @@
+import React from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { FaUserSecret } from "react-icons/fa";
 import CommentAddBox from "./CommentAddBox";
 import Comment from "./Comment";
@@ -8,18 +11,28 @@ const PostDetailView = ({ post, comments }) => {
       <div className="p-4">
         <div className="mb-6">
           <div className="text-gray-600 my-2">{post.category_name}</div>
-          <h3 className="text-xl font-bold">{post.title}</h3>
+          <h3 className="text-3xl font-bold mb-4">{post.title}</h3>
         </div>
 
-        <div className="mb-5">{post.content}</div>
+        {/* Render formatted text */}
+        <div
+          className="mb-5 leading-relaxed"
+          style={{ border: "none !important" }}
+        >
+          <ReactQuill
+            value={post.content}
+            readOnly={true}
+            theme="snow"
+            contentStyle={{ fontSize: "1.2rem", border: "none !important" }}
+            modules={{ toolbar: false }}
+          />
+        </div>
 
-        <div className="border border-gray-100 mb-5"></div>
+        <div className="border-b border-gray-200 mb-5"></div>
 
-        <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-orange-700 mb-3">
-            <FaUserSecret className="inline text-lg mb-1 mr-1" />
-            {post.user}
-          </div>
+        <div className="flex items-center mb-4">
+          <FaUserSecret className="text-orange-700 text-lg mr-2" />
+          <div className="text-sm text-gray-600">{post.user}</div>
         </div>
 
         {/* Comment Section */}

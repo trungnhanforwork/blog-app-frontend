@@ -1,10 +1,10 @@
 import React from "react";
-import ChangePasswordView from "../components/ChangePasswordView";
+import ChangePassword from "../components/ChangePassword";
 
 const ChangePasswordPage = () => {
   return (
     <div>
-      <ChangePasswordView />
+      <ChangePassword />
     </div>
   );
 };

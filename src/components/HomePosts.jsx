@@ -12,7 +12,7 @@ const HomePosts = () => {
       .catch((error) => console.error("Error fetching posts:", error));
   }, []);
   const recentPosts = posts
-    .sort(() => Math.random() - Math.random())
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
     .slice(0, 3);
   return (
     <>

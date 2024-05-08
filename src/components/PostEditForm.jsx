@@ -1,26 +1,44 @@
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { isAuthenticated, getToken } from "../utils/authUtils";
 
-const PostAddForm = () => {
+const PostEditForm = ({ postId }) => {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const [fields, setFields] = useState({
-    comments: [],
     title: "",
     content: "",
-    category: 0,
+    category: "",
+    comments: [],
   });
-
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    async function fetchPostData() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch post data");
+        }
+        const postData = await response.json();
+        setFields({
+          title: postData.title,
+          content: postData.content,
+          category: postData.category,
+          comments: postData.comments,
+        });
+      } catch (error) {
+        console.error("Error fetching post data:", error);
+      }
+    }
+    fetchPostData();
+  }, [postId]);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -44,7 +62,7 @@ const PostAddForm = () => {
     const { name, value } = e.target;
     setFields((prevFields) => ({
       ...prevFields,
-      [name]: name === "category" ? value || "" : value,
+      [name]: value,
     }));
   };
 
@@ -52,14 +70,15 @@ const PostAddForm = () => {
     e.preventDefault();
     try {
       const token = getToken();
+      console.log(fields);
       if (!token || !isAuthenticated()) {
-        toast.error("Fail to post blog!");
+        toast.error("Fail to edit blog post!");
         throw new Error("Token not found");
       }
       const response = await fetch(
-        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/new/`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
@@ -68,12 +87,11 @@ const PostAddForm = () => {
         }
       );
       if (response.ok) {
-        toast.success("Post added successfully!");
-        setTimeout(() => setShowSuccessMessage(false), 3000);
-        navigate("/");
+        toast.success("Post updated successfully!");
+        navigate(`/post/${postId}`);
       } else {
-        toast.error("Failed to add post");
-        throw new Error("Failed to add post");
+        toast.error("Failed to update post");
+        throw new Error("Failed to update post");
       }
     } catch (error) {
       console.error(error);
@@ -83,20 +101,8 @@ const PostAddForm = () => {
   return (
     mounted && (
       <div>
-        {showSuccessMessage && (
-          <div className="alert success">
-            <span
-              className="closebtn"
-              onClick={() => setShowSuccessMessage(false)}
-            >
-              &times;
-            </span>
-            Post added successfully!
-          </div>
-        )}
-        {/* // <form action="/api/posts" method="POST"> */}
         <form onSubmit={handleSubmit}>
-          <h2 className="text-3xl text-center font-semibold mb-6">Add Post</h2>
+          <h2 className="text-3xl text-center font-semibold mb-6">Edit Post</h2>
 
           <div className="mb-4">
             <label
@@ -125,8 +131,6 @@ const PostAddForm = () => {
               Content
             </label>
             <ReactQuill
-              id="content"
-              name="content"
               value={fields.content}
               onChange={(content) => setFields({ ...fields, content })}
               className="border rounded"
@@ -172,15 +176,9 @@ const PostAddForm = () => {
               onChange={handleChange}
               required
             >
-              <option className="text-lg" value="">
-                Select a category
-              </option>
+              <option value="">Select a category</option>
               {categories.map((category) => (
-                <option
-                  className="text-lg"
-                  key={category.id}
-                  value={category.id}
-                >
+                <option key={category.id} value={category.id}>
                   {category.name}
                 </option>
               ))}
@@ -192,7 +190,7 @@ const PostAddForm = () => {
               className="bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
               type="submit"
             >
-              Add Post
+              Update Post
             </button>
           </div>
         </form>
@@ -201,4 +199,4 @@ const PostAddForm = () => {
   );
 };
 
-export default PostAddForm;
+export default PostEditForm;
