@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.ql-editor {
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
+}
+.ql-container.ql-snow {
+  border: none !important;
+}

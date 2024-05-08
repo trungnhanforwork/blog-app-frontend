@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Building a Search Form in React with Next.js and useRouter",
+      "category": "Next",
+      "content": "Over the past few years at Itselftools.com, we have gained extensive experience developing over 30 applications using technologies like Next.js and Firebase. Today, we're sharing a slice of our expertise by breaking down a React component that effectively utilizes Next.js's routing capabilities to handle a basic search functionality. This guide will dissect a simple search form, explaining every line of code and how it contributes to the overall functionality. This simple component elegantly demonstrates using React hooks for state management and Next.js's useRouter for navigation. If you're eager to see this code in action, check out some of the applications we've built, such as English Adjectives Dictionary, Text to Speech Online, and Rhyming Dictionary. These tools showcase the practical application of the techniques discussed in this guide. Explore these resources and consider how you can integrate similar functionality into your projects",
+      "user": "Trung Nhan"
+    },
+    {
+      "id": "2",
+      "title": "Clean Code: The Art of Clean Naming",
+      "category": "Clean Code",
+      "content": "The art of clean naming, and yes it is an art, is something that you can practice anytime you code. It is something I make intentional when I code. There are times when naming comes naturally to me. Then there are times when I have no idea when I should name something so I call it x. It’s when I start naming things x instead of what it is which is employee, customer, or student. Let’s dive in and see examples of the best naming conventions in code. Clarity is Key.How does one show clarity? Isn’t this super obvious when trying to name something?",
+      "user": "Trung Nhan"
+    },
+    {
+      "id": "3",
+      "title": "Clean Code: The Art of Clean Naming",
+      "category": "Clean Code",
+      "content": "The art of clean naming, and yes it is an art, is something that you can practice anytime you code. It is something I make intentional when I code. There are times when naming comes naturally to me. Then there are times when I have no idea when I should name something so I call it x. It’s when I start naming things x instead of what it is which is employee, customer, or student. Let’s dive in and see examples of the best naming conventions in code. Clarity is Key.How does one show clarity? Isn’t this super obvious when trying to name something?",
+      "user": "Trung Nhan"
+    },
+    {
+      "id": "4",
+      "title": "Clean Code: The Art of Clean Naming",
+      "category": "Clean Code",
+      "content": "The art of clean naming, and yes it is an art, is something that you can practice anytime you code. It is something I make intentional when I code. There are times when naming comes naturally to me. Then there are times when I have no idea when I should name something so I call it x. It’s when I start naming things x instead of what it is which is employee, customer, or student. Let’s dive in and see examples of the best naming conventions in code. Clarity is Key.How does one show clarity? Isn’t this super obvious when trying to name something?",
+      "user": "Trung Nhan"
+    },
+    {
+      "id": "5",
+      "title": "Clean Code: The Art of Clean Naming",
+      "category": "Clean Code",
+      "content": "The art of clean naming, and yes it is an art, is something that you can practice anytime you code. It is something I make intentional when I code. There are times when naming comes naturally to me. Then there are times when I have no idea when I should name something so I call it x. It’s when I start naming things x instead of what it is which is employee, customer, or student. Let’s dive in and see examples of the best naming conventions in code. Clarity is Key.How does one show clarity? Isn’t this super obvious when trying to name something?",
+      "user": "Trung Nhan"
+    }
+  ]
+}
