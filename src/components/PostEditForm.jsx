@@ -70,7 +70,7 @@ const PostEditForm = ({ postId }) => {
     e.preventDefault();
     try {
       const token = getToken();
-      console.log(fields);
+      // console.log(fields);
       if (!token || !isAuthenticated()) {
         toast.error("Fail to edit blog post!");
         throw new Error("Token not found");
