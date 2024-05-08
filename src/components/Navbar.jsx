@@ -91,11 +91,11 @@ const Navbar = ({ isAuthenticated }) => {
                 <NavLink to="/" className={linkClass}>
                   Home
                 </NavLink>
-                <NavLink to="/posts" className={linkClass}>
+                <NavLink to="/post/list" className={linkClass}>
                   Blogs
                 </NavLink>
                 {isAuthenticated && (
-                  <NavLink to="/new" className={linkClass}>
+                  <NavLink to="/post/add" className={linkClass}>
                     Add Blog
                   </NavLink>
                 )}

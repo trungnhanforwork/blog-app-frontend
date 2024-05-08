@@ -23,7 +23,7 @@ const ProfileView = ({ userData }) => {
         const response = await fetch(
           `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${
             userData.id
-          }/post`
+          }/post/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch user posts");
@@ -59,7 +59,7 @@ const ProfileView = ({ userData }) => {
     }
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}/`,
         {
           method: "DELETE",
           headers: {

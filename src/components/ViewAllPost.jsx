@@ -4,7 +4,7 @@ const ViewAllJobs = () => {
   return (
     <section className="m-auto max-w-lg my-10 px-6">
       <Link
-        to="/posts"
+        to="/post/list"
         className="block bg-black text-white text-center py-4 px-6 rounded-full hover:bg-gray-800"
       >
         View All Posts

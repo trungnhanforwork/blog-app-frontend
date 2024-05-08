@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-wrap justify-center md:justify-start mb-4 md:mb-0">
           <ul className="flex space-x-4 justify-center md:justify-start">
             <li>
-              <a href="/posts">Blogs</a>
+              <a href="/post/list">Blogs</a>
             </li>
             <li>
               <a href="/terms">Terms of Service</a>

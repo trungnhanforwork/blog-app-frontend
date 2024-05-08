@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const PostEditPage = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   return (
     <section className="bg-blue-50">
       <div className="container m-auto max-w-5xl py-24">

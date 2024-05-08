@@ -8,10 +8,10 @@ import { isAuthenticated, getToken } from "../utils/authUtils";
 const PostEditForm = ({ postId }) => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
+    comments: [],
     title: "",
     content: "",
     category: "",
-    comments: [],
   });
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const PostEditForm = ({ postId }) => {
     async function fetchPostData() {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}`
+          `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}/`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch post data");
@@ -33,6 +33,7 @@ const PostEditForm = ({ postId }) => {
           category: postData.category,
           comments: postData.comments,
         });
+        console.log(postData);
       } catch (error) {
         console.error("Error fetching post data:", error);
       }
@@ -76,7 +77,7 @@ const PostEditForm = ({ postId }) => {
         throw new Error("Token not found");
       }
       const response = await fetch(
-        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}`,
+        `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${postId}/`,
         {
           method: "PUT",
           headers: {

@@ -11,7 +11,7 @@ const PostDetailPage = () => {
 
   useEffect(() => {
     // Fetch post data from API with id
-    fetch(`${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${id}`)
+    fetch(`${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${id}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch post data");
@@ -28,7 +28,7 @@ const PostDetailPage = () => {
       });
 
     fetch(
-      `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${id}/comments`
+      `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${id}/comments/`
     )
       .then((response) => {
         if (!response.ok) {

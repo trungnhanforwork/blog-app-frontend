@@ -24,7 +24,7 @@ const InfoBoxes = () => {
             backgroundColor="bg-blue-100"
             buttonInfo={{
               text: "Add Blog",
-              link: "/new",
+              link: "/post/add",
               backgroundColor: "bg-blue-800",
             }}
           >

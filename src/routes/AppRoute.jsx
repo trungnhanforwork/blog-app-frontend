@@ -17,14 +17,14 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route exact path="/" element={<HomePage />} />
+        <Route index element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/post/:id" element={<PostDetailPage />} />
-        <Route path="/posts" element={<PostPage />} />
+        <Route path="/post/list" element={<PostPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route element={<PrivateRoute />}>
-          <Route exact path="/new" element={<PostAddPage />} />
+          <Route exact path="/post/add" element={<PostAddPage />} />
           <Route
             exact
             path="/profile/changepassword"
