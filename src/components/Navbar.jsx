@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Navbar = ({ isAuthenticated }) => {
   const [isProfileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -31,6 +32,7 @@ const Navbar = ({ isAuthenticated }) => {
       if (response.ok) {
         // If logout is successful, remove token from local storage
         localStorage.removeItem("token");
+        toast.success('Logout successful')
         // Redirect user to the homepage
         window.location.href = "http://localhost:3500/";
       } else {
@@ -181,7 +183,7 @@ const Navbar = ({ isAuthenticated }) => {
                     >
                       Your Profile
                     </NavLink>
-                    <Link
+                    {/* <Link
                       href="/properties/saved"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
@@ -192,7 +194,7 @@ const Navbar = ({ isAuthenticated }) => {
                       }}
                     >
                       Saved Properties
-                    </Link>
+                    </Link> */}
                     <button
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"

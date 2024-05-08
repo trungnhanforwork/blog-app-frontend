@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -28,9 +29,11 @@ const SignUpForm = () => {
       );
       if (response.ok) {
         const data = await response.json();
+        toast.success("Successfully registered");
         // Assuming successful registration, redirect user to the login page
         window.location.href = "/login";
       } else {
+        toast.error("Failed to register");
         throw new Error("Registration failed");
       }
     } catch (error) {

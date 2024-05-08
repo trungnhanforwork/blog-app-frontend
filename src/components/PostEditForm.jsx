@@ -15,6 +15,7 @@ const PostEditForm = ({ postId }) => {
   });
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -102,6 +103,17 @@ const PostEditForm = ({ postId }) => {
   return (
     mounted && (
       <div>
+        {showSuccessMessage && (
+          <div className="alert success">
+            <span
+              className="closebtn"
+              onClick={() => setShowSuccessMessage(false)}
+            >
+              &times;
+            </span>
+            Post edited successfully!
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <h2 className="text-3xl text-center font-semibold mb-6">Edit Post</h2>
 

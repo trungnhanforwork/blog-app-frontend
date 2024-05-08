@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { isAuthenticated } from "../utils/authUtils";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,12 +29,14 @@ const LoginForm = () => {
         }
       );
       if (response.ok) {
+        toast.success("Login successful");
         const data = await response.json();
         // Assuming successful login, store token in local storage
         localStorage.setItem("token", data.token);
         // Redirect user to the desired page
         window.location.href = "/";
       } else {
+        toast.error("Invalid username or password");
         throw new Error("Invalid username or password");
       }
     } catch (error) {
