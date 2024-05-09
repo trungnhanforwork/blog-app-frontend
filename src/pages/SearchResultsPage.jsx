@@ -35,7 +35,7 @@ const SearchResultsPage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {posts.length === 0 ? (
-              <p>No search results found found!</p>
+              <p>No search results found!</p>
             ) : (
               posts.map((post) => <PostCard key={post.id} post={post} />)
             )}
