@@ -18,7 +18,7 @@ const CommentAddBox = ({ postId }) => {
       const response = await fetch(
         `${
           import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN
-        }/blog/${postId}/comments/create`,
+        }/blog/${postId}/comments/create/`,
         {
           method: "POST",
           headers: {
