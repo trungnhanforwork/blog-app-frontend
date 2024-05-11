@@ -3,6 +3,7 @@ import { getToken } from "../utils/authUtils";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import { FaUserSecret, FaThumbsUp } from "react-icons/fa";
+import { format } from "date-fns";
 import CommentAddBox from "./CommentAddBox";
 import Comment from "./Comment";
 import VoteStatus from "./VoteStatus";
@@ -41,19 +42,21 @@ const PostDetail = ({ post, comments }) => {
   };
 
   const handleVote = () => {
-    const url = `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${post.id}/vote/`;
+    const url = `${import.meta.env.VITE_DJANGO_PUBLIC_API_DOMAIN}/blog/${
+      post.id
+    }/vote/`;
     const token = getToken();
     let method;
-  
+
     if (userHasVoted) {
       method = "DELETE";
     } else {
       method = "POST";
     }
-  
+
     // Update userHasVoted state immediately
     setUserHasVoted(!userHasVoted);
-  
+
     fetch(url, {
       method: method,
       headers: {
@@ -63,7 +66,9 @@ const PostDetail = ({ post, comments }) => {
     })
       .then((response) => {
         if (response.ok) {
-          setVoteCount((prevCount) => (userHasVoted ? prevCount - 1 : prevCount + 1));
+          setVoteCount((prevCount) =>
+            userHasVoted ? prevCount - 1 : prevCount + 1
+          );
           setVoteIcon(!userHasVoted);
         } else {
           console.error("Error:", response.statusText);
@@ -77,7 +82,6 @@ const PostDetail = ({ post, comments }) => {
         setUserHasVoted(userHasVoted);
       });
   };
-  
 
   return (
     <div className="bg-white rounded-xl shadow-md relative">
@@ -85,6 +89,10 @@ const PostDetail = ({ post, comments }) => {
         <div className="mb-6">
           <div className="text-gray-600 my-2">{post.category_name}</div>
           <h3 className="text-3xl font-bold mb-4">{post.title}</h3>
+          <p className="text-sm text-gray-400">
+            Updated at:{" "}
+            {format(new Date(post.updated_at), "dd/MM/yyyy HH:mm:ss")}
+          </p>
         </div>
 
         {/* Render formatted text */}
